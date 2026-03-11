@@ -1,0 +1,73 @@
+# Attention Model Pipeline Configuration
+# Edit this file to customize hyperparameters for your analysis
+
+# ============================================================================
+# Model Architecture
+# ============================================================================
+model:
+  sequence_length: 48        # Input sequence length (frames)
+  prediction_length: 24       # Prediction length (frames)
+  latent_dim: 64             # LSTM latent dimension
+  bottleneck_dim: 32         # Bottleneck layer dimension
+  original_sequence_length: 480  # Original sequence length for category selection
+  include_depth_features: false   # Whether to include absolute depth features (test_depth and probe_depth)
+
+# ============================================================================
+# Training Parameters
+# ============================================================================
+training:
+  batch_size: 32             # Batch size
+  patience: 30               # Early stopping patience
+  test_size: 0.3            # Validation split ratio
+  dropout_rate: 0.2         # Dropout rate
+  regularization_lambda: 0.1  # L2 regularization
+  random_seed: 42           # Random seed for reproducibility
+  epochs: 300               # Maximum training epochs
+
+# ============================================================================
+# Behavioral Categories
+# Use "all" to include all categories (for full manuscript pipeline).
+# Or list specific categories, e.g. ["Bottom Playing", "Bottom Alone"]
+# ============================================================================
+categories:
+  desired_categories: "all"
+
+# ============================================================================
+# Data Paths
+# ============================================================================
+paths:
+  data: "/path/to/all_dfs.pkl"
+  category_file: "/path/to/category_file.csv"
+  sample_feature: "/path/to/sample_feature.csv"  # CSV with columns (with '_') for DataFrame Index -> monkey_day mapping
+  model_output: "/path/to/model_output/"
+  latent_output: "/path/to/latent_output/"
+  pca_output: "/path/to/pca_output/"
+  tsne_output: "/path/to/tsne_output/"
+
+# ============================================================================
+# PCA Parameters
+# ============================================================================
+pca:
+  target_variance: 0.99      # Target variance to explain
+
+# ============================================================================
+# t-SNE Parameters
+# ============================================================================
+tsne:
+  n_batches: 6               # Number of batches for processing
+  n_clusters: 12             # Number of clusters
+  perplexity: 200             # t-SNE perplexity
+  exaggeration: 1            # Final exaggeration
+  early_exaggeration_iter: 300  # Early exaggeration iterations
+  n_neighbors: 50            # Number of neighbors for clustering
+
+# ============================================================================
+# Pipeline Control
+# Set to false to skip a step
+# ============================================================================
+pipeline:
+  run_training: true
+  run_latent_extraction: true
+  run_pca: true
+  run_tsne: true
+

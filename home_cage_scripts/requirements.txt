@@ -1,0 +1,9 @@
+# Home cage analysis — DLC pose analysis
+pandas>=1.2.0
+numpy>=1.19.0
+matplotlib>=3.3.0
+opencv-python>=4.5.0
+scipy>=1.6.0
+tqdm>=4.60.0
+# Optional: for video concatenation / advanced video I/O
+# moviepy>=1.0.3

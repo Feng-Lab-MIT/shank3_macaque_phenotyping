@@ -1,0 +1,32 @@
+# Data and outputs
+*.csv
+*.mp4
+*.png
+*.jpg
+plots/
+stereotypic/
+video_chunks/
+raw_videos/
+data/
+pacing/
+*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db

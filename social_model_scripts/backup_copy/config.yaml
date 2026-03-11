@@ -1,0 +1,71 @@
+# Attention Model Pipeline Configuration
+# Edit this file to customize hyperparameters for your analysis
+
+# ============================================================================
+# Model Architecture
+# ============================================================================
+model:
+  sequence_length: 48        # Input sequence length (frames)
+  prediction_length: 24       # Prediction length (frames)
+  latent_dim: 64             # LSTM latent dimension
+  bottleneck_dim: 32         # Bottleneck layer dimension
+  original_sequence_length: 480  # Original sequence length for category selection
+  include_depth_features: false   # Whether to include absolute depth features (test_depth and probe_depth)
+
+# ============================================================================
+# Training Parameters
+# ============================================================================
+training:
+  batch_size: 32             # Batch size
+  patience: 30               # Early stopping patience
+  test_size: 0.3            # Validation split ratio
+  dropout_rate: 0.2         # Dropout rate
+  regularization_lambda: 0.1  # L2 regularization
+  random_seed: 42           # Random seed for reproducibility
+  epochs: 300               # Maximum training epochs
+
+# ============================================================================
+# Behavioral Categories
+# ============================================================================
+categories:
+  desired_categories:
+    - "Bottom Playing"
+
+# ============================================================================
+# Data Paths
+# ============================================================================
+paths:
+  data: "/media/fenglab/Seagate Hub/Shank3_macaque/second cohort/social/limb_model/all_dfs_with_limb_features.pkl"
+  category_file: "/media/fenglab/New Volume/River_data_backup/2nd_cohort_social/3d/model/data_for_analysis_200_1_5_64_clusters.csv"
+  model_output: "/media/fenglab/newssd/social/model_output/"
+  latent_output: "/media/fenglab/newssd/social/latent_output/"
+  pca_output: "/media/fenglab/newssd/social/pca_output/"
+  tsne_output: "/media/fenglab/newssd/social/tsne_output/"
+
+# ============================================================================
+# PCA Parameters
+# ============================================================================
+pca:
+  target_variance: 0.99      # Target variance to explain
+
+# ============================================================================
+# t-SNE Parameters
+# ============================================================================
+tsne:
+  n_batches: 6               # Number of batches for processing
+  n_clusters: 12             # Number of clusters
+  perplexity: 200             # t-SNE perplexity
+  exaggeration: 1            # Final exaggeration
+  early_exaggeration_iter: 300  # Early exaggeration iterations
+  n_neighbors: 50            # Number of neighbors for clustering
+
+# ============================================================================
+# Pipeline Control
+# Set to false to skip a step
+# ============================================================================
+pipeline:
+  run_training: true
+  run_latent_extraction: true
+  run_pca: true
+  run_tsne: true
+
