@@ -16,8 +16,8 @@
 
 **Problem:** Similar to tsne.py, `pca.py` was constructing paths at the module level (lines 17-18):
 ```python
-latent_dir = f'/media/fenglab/.../latent_seq_{sequence_length}_...'
-output_folder = f'/media/fenglab/.../pca_seq_{sequence_length}_...'
+latent_dir = f'/path/to/latent_output/latent_seq_{sequence_length}_...'
+output_folder = f'/path/to/pca_output/pca_seq_{sequence_length}_...'
 ```
 This happened before the pipeline could update `sequence_length`, `latent_dim`, or `bottleneck_dim`.
 
@@ -123,7 +123,7 @@ The scripts should now correctly use `sequence_length=120` and `latent_dim=32` i
 ## Remaining Considerations
 
 1. **Path Conventions**: The scripts still use hardcoded path patterns like:
-   - `/media/fenglab/newssd/social/bottom_playing_and_alone_latent_seq_...`
+   - `/path/to/latent_output/bottom_playing_and_alone_latent_seq_...`
    
    These could be made more flexible by reading from config, but that would require more extensive refactoring.
 
@@ -132,8 +132,8 @@ The scripts should now correctly use `sequence_length=120` and `latent_dim=32` i
 3. **Config.yaml Paths**: The user updated paths in config.yaml to be cleaner:
    ```yaml
    paths:
-     model_output: "/media/fenglab/newssd/social/model_output/"
-     latent_output: "/media/fenglab/newssd/social/latent_output/"
+     model_output: "/path/to/model_output/"
+     latent_output: "/path/to/latent_output/"
    ```
    However, the scripts still append their own subdirectory names. This is fine and maintains the existing file organization.
 
@@ -142,7 +142,6 @@ The scripts should now correctly use `sequence_length=120` and `latent_dim=32` i
 The pipeline should now work correctly! Try running:
 
 ```bash
-cd /home/fenglab/Documents/dlc/attention_model_scripts/pipeline
 python run_pipeline_from_config.py
 ```
 

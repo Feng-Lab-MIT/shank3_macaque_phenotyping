@@ -27,10 +27,10 @@ model:
   bottleneck_dim: 32
 
 paths:
-  model_output: "/media/fenglab/newssd/social/model_output/"
-  latent_output: "/media/fenglab/newssd/social/latent_output/"
-  pca_output: "/media/fenglab/newssd/social/pca_output/"
-  tsne_output: "/media/fenglab/newssd/social/tsne_output/"
+  model_output: "/path/to/model_output/"
+  latent_output: "/path/to/latent_output/"
+  pca_output: "/path/to/pca_output/"
+  tsne_output: "/path/to/tsne_output/"
 ```
 
 ### 2. Pipeline Script - Reads and Distributes
@@ -70,8 +70,8 @@ Each script now:
 1. **Declares default folder variables** (used when run standalone)
    ```python
    # In latent_extraction.py
-   model_folder = '/home/fenglab/Documents/dlc/...'  # Default
-   latent_output_folder = '/media/fenglab/newssd/social/'  # Default
+   model_folder = '/path/to/model_output/'  # Default
+   latent_output_folder = '/path/to/latent_output/'  # Default
    ```
 
 2. **Uses these variables in main()**
@@ -97,13 +97,13 @@ Each script receives **base folders** from config and constructs **specific subd
 
 **Config provides:**
 ```yaml
-latent_output: "/media/fenglab/newssd/social/latent_output/"
+latent_output: "/path/to/latent_output/"
 ```
 
 **Script constructs:**
 ```python
 output_dir = f'{latent_output_folder}bottom_playing_and_alone_latent_seq_{sequence_length}_latent_{latent_dim}_bottleneck_{bottleneck_dim}_no_velocity_test_depth/'
-# Result: /media/fenglab/newssd/social/latent_output/bottom_playing_and_alone_latent_seq_240_latent_64_bottleneck_32_no_velocity_test_depth/
+# Result: /path/to/latent_output/bottom_playing_and_alone_latent_seq_240_latent_64_bottleneck_32_no_velocity_test_depth/
 ```
 
 This pattern allows:
@@ -250,7 +250,7 @@ All scripts will automatically use:
 With the config paths, your files will be organized like:
 
 ```
-/media/fenglab/newssd/social/
+/path/to/output/
 ├── model_output/
 │   └── best_model_...seq240_latent64_bottleneck32.h5
 ├── latent_output/

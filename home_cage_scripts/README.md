@@ -2,6 +2,16 @@
 
 Analysis scripts for DeepLabCut (DLC) pose data from macaque home cage videos. Detects and quantifies stereotypic behaviors: self-biting, repetitive (big) motion, and pacing.
 
+## Example data
+
+One example DLC CSV is included: **`data/57_day2.csv`**. You can run the full pipeline with defaults (no path changes needed):
+
+```bash
+python run_home_cage_pipeline.py
+```
+
+When prompted for thresholds, choose option 1 to use recommended values. Outputs (median/mean CSVs, big motion chunks, pacing dictionary) are written to `./data/`, `./plots/`, `./pacing/`, etc. For your own data, put `monkey_day.csv` files in `./data/` or set **DEFAULT_VIDEO_FOLDERS** in `config.py` / use `--video-folders`.
+
 ## Requirements
 
 - Python 3.7+
@@ -16,7 +26,8 @@ pip install -r requirements.txt
 Edit **`config.py`** (and/or set env vars for paths):
 
 - **FULL_MONKEY_LIST** — Monkey IDs for file discovery.
-- **DEFAULT_VIDEO_FOLDERS** — Directories containing `monkey_day.csv` (e.g. `57_day1.csv`). Default is `['./data/csv/']`; set to your actual path or pass `--video-folders`.
+- **DEFAULT_VIDEO_FOLDERS** — Directories containing `monkey_day.csv` (e.g. `57_day2.csv`). Default is `['./data/']` (example file included); set to your path or pass `--video-folders`.
+- **PROCESS_DAYS** — Which day numbers to look for (e.g. `[2]` for `*_day2.csv`). Default `[2]` matches the example `57_day2.csv`.
 - **Folder paths** — Optional env vars: `HOME_CAGE_PLOT_FOLDER`, `HOME_CAGE_STEREOTYPIC_FOLDER`, `HOME_CAGE_VIDEO_CHUNK_FOLDER`, `HOME_CAGE_RAW_VIDEO_FOLDER`, `HOME_CAGE_DATA_FOLDER`, `HOME_CAGE_PACING_FOLDER`.
 
 ## Thresholds
@@ -49,6 +60,6 @@ Run: `python run_home_cage_pipeline.py` (or `--steps self_biting median_mean big
 
 ## Data assumptions
 
-- DLC CSVs: `monkey_day.csv` (e.g. `57_day1.csv`), header `[0,1]`, cohort 1 body-part names. Tail parts (30-mid tail, 31-tail tip) excluded from median/mean; last 3 columns (timestamps) dropped.
-- 25 fps; ~180k frames per session. Use **`--different-starting`** for session-specific starting frame (see `get_starting_frame()` in `utils.py`).
+- DLC CSVs: `monkey_day.csv` (e.g. `57_day2.csv`), header `[0,1]`, cohort 1 body-part names. Tail parts (30-mid tail, 31-tail tip) excluded from median/mean; last 3 columns (timestamps) dropped.
+- 25 fps. **Length and trimming:** Analyses are designed for up to 2 hours of data (180000 frames). When you use the default **`--different-starting`** behavior, the pipeline calls `get_starting_frame()` (in `utils.py`): if your recording is *longer* than 2 hours, it trims to exactly 2 hours from a small offset so segment length is consistent; if your data is already 2 hours or shorter, **no cut is applied** and all frames from the start are used.
 

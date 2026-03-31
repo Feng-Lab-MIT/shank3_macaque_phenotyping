@@ -114,13 +114,13 @@ def main():
         "--different-starting",
         action="store_true",
         default=config.USE_DIFFERENT_STARTING_FRAME,
-        help="Use session-specific starting frame (get_starting_frame)",
+        help="Trim to 2 hours when data is longer (get_starting_frame); no cut if already ≤2 hr",
     )
     parser.add_argument(
         "--no-different-starting",
         dest="different_starting",
         action="store_false",
-        help="Use fixed start frame 50 instead of get_starting_frame()",
+        help="Use fixed start frame 50 instead of length-based trim",
     )
     parser.add_argument("--extract-videos", action="store_true", help="Extract repetitive-motion video chunks")
     args = parser.parse_args()

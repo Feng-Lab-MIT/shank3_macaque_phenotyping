@@ -26,16 +26,16 @@ Before running, set the path placeholders in each script to your data and output
 At the top of the file, set:
 
 - **`csv_dir`** — directory containing the input CSV files (e.g. `'single_3d_new/day1'`)
-- **`out_dir`** — directory where travel-distance outputs will be written (e.g. `'travel_distance'`)
+- **`out_dir`** — directory where travel-distance outputs will be written (default: `'travel_distance_output'`)
 
 ### `generate_3d_heatmap.py`
 
 At the top of the file, set:
 
-- **`output_dir`** — directory where heatmap figures will be saved (e.g. `'3d_heatmaps'`)
+- **`output_dir`** — directory where heatmap figures will be saved (default: `'heatmap_output'`)
 - **`csv_dir`** — directory containing the input CSV files (e.g. `'single_3d_new/day1'`)
 
-Replace the literal strings `'<path_to_csv_directory>'` and `'<path_to_output_directory>'` with your paths (as strings, e.g. `'./data/day1'`).
+Replace `'<path_to_csv_directory>'` with your data path (e.g. `'./data/day1'`). Output directories have default names (`travel_distance_output`, `heatmap_output`) and will be created automatically.
 
 ## Input data
 

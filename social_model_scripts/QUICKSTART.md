@@ -5,8 +5,6 @@
 To run the complete pipeline with default settings:
 
 ```bash
-cd /home/fenglab/Documents/dlc/attention_model_scripts/pipeline
-conda activate tmpenv
 pip install pyyaml  # Only needed once
 python run_pipeline_from_config.py
 ```
@@ -114,7 +112,7 @@ model_2_sub_train_with_sub/
 ├── training_log_*.csv                 # Training history
 └── feature_info_*.pkl                 # Feature metadata
 
-/media/fenglab/newssd/social/
+/path/to/latent_output/
 ├── bottom_playing_and_alone_latent_*/  # Latent representations ✅
 ├── bottom_playing_and_alone_pca_*/     # PCA results ✅
 │   └── pca_results/

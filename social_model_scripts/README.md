@@ -181,12 +181,6 @@ In `config.yaml`, set `pipeline.run_training`, `run_latent_extraction`, and `run
 
 ## Environment
 
-Make sure you're running in the correct conda environment:
-
-```bash
-conda activate tmpenv
-```
-
 ### Dependencies
 
 If using the config-based approach (`run_pipeline_from_config.py`), you need PyYAML:

@@ -7,7 +7,7 @@ import os
 import glob
 import hashlib
 
-output_dir = '<path_to_output_directory>'
+output_dir = 'heatmap_output'
 os.makedirs(output_dir, exist_ok=True)
 
 elevation = 28.6

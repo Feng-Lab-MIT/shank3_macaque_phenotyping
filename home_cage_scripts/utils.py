@@ -21,27 +21,14 @@ def filter_consecutive_integers(nums, min_consecutive=10):
 
 
 def get_starting_frame(monkey_day, df, default_extra_cut=1500):
-    """Return starting frame for 2-hr chunk; used when videos have different trim points."""
-    if monkey_day in ('83_day2', '84_day2'):
-        return 12000
-    if monkey_day == '84_day3':
-        return 25500
-    if monkey_day == '85_day1':
-        return 6000
-    if monkey_day == '56_day2':
-        return 21000
-    if monkey_day in ('80_day2', '52_day2'):
-        return 24000
-    if monkey_day == '81_day2':
-        return 4500
-    if monkey_day == '57_day3':
-        return 18000
-    if monkey_day == '78_day3':
-        return 6000
-    if monkey_day == '79_day3':
-        return 4500
-    if monkey_day == '57_day1':
-        return 19500
+    """
+    Return starting frame so that analysis uses exactly 2 hours of data (180000 frames at 25 fps).
+
+    If the recording is longer than 181500 frames, returns default_extra_cut so that
+    [start : start + 180000] yields a 2-hour chunk. If the data is already that length or
+    shorter, returns 0 (use from the beginning; no cut). Your data does not need to be
+    exactly 2 hours: shorter recordings are used in full; longer ones are trimmed to 2 hours.
+    """
     if len(df) > 181500:
         return default_extra_cut
     return 0

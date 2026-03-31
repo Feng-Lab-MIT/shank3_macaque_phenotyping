@@ -18,7 +18,7 @@ CAGE_Y = 150.0
 CAGE_Z = 100.0
 
 csv_dir = '<path_to_csv_directory>'
-out_dir = '<path_to_output_directory>'
+out_dir = 'travel_distance_output'
 os.makedirs(out_dir, exist_ok=True)
 
 FPS = 24

@@ -19,17 +19,19 @@ raw_video_folder = os.environ.get("HOME_CAGE_RAW_VIDEO_FOLDER", "./raw_videos/")
 data_folder = os.environ.get("HOME_CAGE_DATA_FOLDER", "./data/")
 pacing_folder = os.environ.get("HOME_CAGE_PACING_FOLDER", "./pacing/")
 
-# Default CSV search path — set to your directory containing monkey_day.csv (e.g. 57_day1.csv)
-DEFAULT_VIDEO_FOLDERS = ['./data/csv/']
+# Default CSV search path — directory containing monkey_day.csv (e.g. 57_day2.csv).
+# Example data: one file is provided in data/57_day2.csv so the pipeline runs out of the box.
+DEFAULT_VIDEO_FOLDERS = ['./data/']
 
-# Which days to process (1 = day1 only, [1, 2, 3] = all three days)
-PROCESS_DAYS = [1]
+# Which days to process (1 = day1 only, [2] = day2 only, [1, 2, 3] = all three days).
+# Set to [2] to run with the included example data/57_day2.csv.
+PROCESS_DAYS = [2]
 
 # Which pipeline steps to run by default (omit or pass --steps to override).
 # Options: "self_biting", "median_mean", "big_motion", "pacing"
-DEFAULT_STEPS = ["median_mean", "big_motion"]
+DEFAULT_STEPS = ["self_biting", "median_mean", "big_motion", "pacing"]
 
-# Use session-specific starting frame via get_starting_frame() (utils.py).
+# When True, use get_starting_frame() to trim to exactly 2 hours when data is longer (see utils.py).
 USE_DIFFERENT_STARTING_FRAME = True
 
 # ---------------------------------------------------------------------------
