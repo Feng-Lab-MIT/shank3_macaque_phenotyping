@@ -1,0 +1,21 @@
+v1.0.0 — Initial Release
+
+This is the first public release of the analysis code accompanying the Shank3 macaque phenotyping manuscript.
+
+What's included
+
+Home Cage Behavioral Analysis (home_cage_scripts/)
+Pipeline for automated detection of stereotypic behaviors from DLC-tracked home cage recordings, including self-biting, repetitive/big motion, and pacing. Includes example data to run out of the box.
+
+Novel Environment Analysis (novel_environment_scripts/)
+Scripts for computing 3D travel distance in 5-minute bins and generating 3D head-position heatmaps from novel environment sessions, in real-world cage coordinates.
+
+Social Interaction Model (social_model_scripts/)
+Attention-based LSTM pipeline for unsupervised behavioral analysis of social interactions, covering model training, latent space extraction, PCA, and t-SNE clustering.
+
+EEG Recording Program (eeg_recording_program/)
+MATLAB scripts for MMN (mismatch negativity) EEG paradigm.
+
+Requirements
+- Python 3.11, numpy < 2, TensorFlow 2.15
+- See requirements.txt in each subfolder for per-pipeline dependencies
